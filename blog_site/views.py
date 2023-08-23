@@ -12,7 +12,7 @@ def contributions(request):
 
 
 def blog(request):
-    api_url = 'http://localhost:8000/api/blog/all/'  # Update the API URL
+    api_url = 'https://ianschoenrock.pythonanywhere.com/api/blog/all/'  # Update the API URL
     response = requests.get(api_url)
 
     if response.status_code == 200:

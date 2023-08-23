@@ -1,0 +1,55 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="article">
+    <h2>{{ article.title }}</h2>
+    <p>Date Published: {{ article.date_published }}</p>
+    <!-- Loop through content array and display headings, paragraphs, and code snippets -->
+
+        {% for content in article.content %}
+
+            {% if content.heading %}
+            <h3>{{ content.heading }}</h3>
+            {% endif %}
+            <p>{{ content.paragraph }}</p>
+
+            {% if content.code_snippet %}
+            <pre>{{ content.code_snippet }}</pre>
+            <hr>
+            {% else %}
+            <hr>
+            {% endif %}
+
+        {% endfor %}
+
+</div>
+<style>
+    /* Set a dark background color for the entire page */
+    body {
+        background-color: #333333;  /* Dark gray background color */
+        color: #f0f0f0;
+
+        font-family: "Roboto", sans-serif; /* Material Design typography */
+    }
+
+    pre {
+        background-color: #2d2d2d; /* Dark background color */
+        color: #ffffff; /* White text color */
+        padding: 10px; /* Add some padding around the code */
+        border-radius: 4px; /* Add rounded corners to the code box */
+        overflow: auto; /* Enable scrolling if the code is too long */
+    }
+
+    hr {
+        height: 5px;
+        border: none;
+    }
+</style>
+{% endblock %}
+
+
+
+
+

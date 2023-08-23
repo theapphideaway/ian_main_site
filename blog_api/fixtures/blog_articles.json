@@ -1,0 +1,141 @@
+[
+  {
+    "model": "blog_api.blogarticle",
+    "pk": 1,
+    "fields": {
+      "title": "Insertion Sort and Loop Invariants",
+      "date_published": "2023-08-22",
+      "content": [
+        {
+          "heading": "",
+          "paragraph": "I started with a very basic algorithm: The insertion sort. The concept of the insertion sort is easily illustrated in cards. Lets assume we have a deck of cards and you have to create a hand of 7 cards. You draw one card at a time, each time you draw a new card, you move that card down the line into each correct spot, moving the position of each preceding card. you do this until each card has been drawn. After you have completed drawing cards you will have a sorted hand. Here is a working example using Kotlin code:",
+          "code_snippet": "val array = arrayListOf(5,2,4,6,1,3)\nfor(index in 0 until items.count()) {\n    var key = index\n    while(key - 1 >= 0 && items[key] < items[key - 1]) {\n        val temp = items[key - 1]\n        items[key - 1] = items[key]\n        items[key] = temp\n        key--\n    }\n}\nreturn items"
+        },
+        {
+          "heading": "Loop invariants and their importance",
+          "paragraph": "Loop invariants are the sorted sub arrays of a given unsorted array. Loop invariants show why an algorithm is actually correct. In the case of the insertion sort, the loop invariant would be Array[index] because with each iteration the index increases.",
+          "code_snippet": ""
+        },
+        {
+          "heading": "Three things must be shown about Loop invariants:",
+          "paragraph": "1. Initialization\n2. Maintenance\n3. Termination",
+          "code_snippet": ""
+        },
+        {
+          "heading": "Initialization",
+          "paragraph": "It must be true prior to the first iteration of the loop. This can be taken for granted but an example of this would be looking at the loop invariant before the first iteration is completed. Assuming the index is 0 then the loop invariant would just be Array[0].",
+          "code_snippet": ""
+        },
+        {
+          "heading": "Maintenance",
+          "paragraph": "Maintenance shows the integrity of the loop invariant with each iteration. With each iteration of the insertion sort we move Array[index - 1], Array[index - 2], Array[index - 3], etc, to the right until the current element has found the correct position. The body of the main for loop ends each iteration with the sub-array Array[1..index] sorted, maintaining the loop invariant.",
+          "code_snippet": ""
+        },
+        {
+          "heading": "Termination",
+          "paragraph": "What caused the algorithm to terminate? In the case of the insertion sort, the index value is greater than the array and it exits the for loop.",
+          "code_snippet": ""
+        },
+        {
+          "heading": "Conclusion",
+          "paragraph": "These three principles give us the starting point into looking into the internals of the algorithm and provide a basis for improvement. Being able to identify how one of these principles could be improved will have a direct impact on the efficiency and quality of the algorithm.",
+          "code_snippet": ""
+        }
+      ]
+    }
+  },
+
+  {
+    "model": "blog_api.blogarticle",
+    "pk": 2,
+    "fields": {
+      "title": "Why I Specialized in Android Development",
+      "date_published": "2023-08-24",
+      "content": [
+        {
+          "heading": "",
+          "paragraph": "In 2016 I took a C++ class and it changed my life. It was the most difficult class I had taken in college mainly because I couldn’t grasp how putting funny looking text in a terminal window could do logic. I somehow managed to pass that class and I had a great time in a strange, frustrating way. I had a couple weeks until the next class started so I decided to ask my professor what I could do with programming. As he was listing off ideas, he mentioned making a small application. I think he meant a desktop app but my mind went straight to my phone. I went home and immediately started looking up how to make a mobile app. I also bought a course book and the next semester during C++ class all I wanted to do was Java and make android apps. Almost a year later in 2017 I got my first job as a software developer doing mobile development. Since then I have always been working on an Android codebase in some capacity.  Today that is where I spend almost all of my time developing and I plan on continuing to use Android as my base for all software development. Why?",
+          "code_snippet": ""
+        },
+        {
+          "heading": "1. The Friendliest Mobile Platform",
+          "paragraph": "I could make an app, email the app file (apk) to all my friends and we could use the app for years. Obviously that’s a horrible deployment strategy but Android allows you as the developer to make an app entirely on your own and use the app independent of app stores, certificates, device restrictions, etc. You don’t even necessarily need an IDE as you could use the Gradle command line tools and write all your code entirely from the command line. Again, I wouldn’t recommend doing this, but the point is that you have the freedom of doing so. Most if not all of these things are impossible on iOS.",
+          "code_snippet": ""
+        },
+        {
+          "heading": "2. The Most Diverse OS",
+          "paragraph": "The range of mobile phones that use Android is staggering. Since it’s open source you could theoretically make a phone yourself and add Android to it. Because of this, Android is the primary operating system for cell phones around the world with upwards of 80% of the worlds cell phones using it. On top of most cell phones using android, its also used in defense as the military uses it. Since you can make your own launcher and android experience entirely, companies can not only provide apps but make the entire device specialized for what they need. Android has the freedom and flexibility to allow you as the developer to make your own app manager or store, and your own environment via a launcher, and allow your apps to communicate with each other and share resources. The practicality of this strategy might vary wildly, but the liberty to so this is there, putting it in a unique position.",
+          "code_snippet": ""
+        },
+        {
+          "heading": "3. The Best Language Choice",
+          "paragraph": "I personally love both Java and Kotlin, especially Kotlin. That being said you can develop Android apps using C# and Python. These aren’t cross platform apps, these are using the native APIs specifically for android. You do this with Xamarin.Android for C# and Chaquopy for Python. This is in addition to using all the cross platform frameworks available. Let’s not forget C++ development with the NDK.",
+          "code_snippet": ""
+        },
+        {
+          "heading": "4. The Most Content",
+          "paragraph": "I mean this in a couple different ways. The first way is the amount of content you can consume relating to android development. There are YouTube tutorials that cover all aspects (just about) of android development and are done in many different languages. Outside YouTube, stack overflow, medium, reddit, and others all have large amounts of information regarding questions or problems you might run into, different ideas for side projects, and of course endless blog articles and tutorials.",
+          "code_snippet": ""
+        },
+        {
+          "heading": "5. The Lowest Barrier to Entry",
+          "paragraph": "This in no way means that it’s the easiest framework to learn, and this doesn’t mean that its easy to get an entry level job in android development, but it does mean that it doesn’t take much to get started. Android studio is a bit of a ram hog but you can run it on Mac, Windows, and most linux distros. Most learning resources are completely free and the official documentation is of course free. Some frameworks are limited to the operating system like iOS development and some run on all operating systems but are limited like .NET Core development. You don’t even need a phone as you could use an emulator (I would strongly recommend using a test device though).",
+          "code_snippet": ""
+        },
+        {
+          "heading": "6. Surprisingly Diverse Career Paths",
+          "paragraph": "This one caught me off guard the further I got into my career. There are a surprising amount of people who specialize in niches in Android development. I know people that work almost exclusively on camera and photo optimization, the NDK, UI and graphics, Architecture and architecture components, tablet optimization, accessibility, Game development, Machine learning and AI integration, and many others. I was really caught off guard when I interviewed with instagram and I heard there were team members that spent most of there time on the NDK, obviously on snapchat there are positions that are focused almost exclusively on camera optimizations and photo editing. In various Android job postings there are often times a specific niche listed.",
+          "code_snippet": ""
+        },
+        {
+          "heading": "Conclusion",
+          "paragraph": "At the end of the day, for me, native Android development is fulfilling and I am very privileged to be able to work in a code-base everyday that creates and improves experiences on Android. I’m also incredibly grateful that there are more opportunities to grow and reach for new heights, and to potentially be on the cutting edge of mobile technology. Kotlin is a great language and a pleasure to work with. Considering C++ and Java are languages that I like to experiment with as well, Android continues to be the perfect outlet even after 5 years or working professionally with it.",
+          "code_snippet": ""
+        }
+      ]
+    }
+  },
+  {
+    "model": "blog_api.blogarticle",
+    "pk": 3,
+    "fields": {
+      "title": "Dependency Injection in Android 2023: My Thoughts",
+      "date_published": "2023-08-26",
+      "content": [
+        {
+          "heading": "",
+          "paragraph": "The Android community values dependency injection much more than the other mobile development communities. iOS does have DI but it's not nearly as common and there aren't really any major frameworks for it. Apple does not  have specific guidance for DI and doesn't have a framework for it as well. Since flutter is fairly new still it doesn't have a specified architectural pattern (Bloc, Provider, Riverpod, etc are all ones I’ve seen claimed as the “standard”). Xamarin/MAUI is becoming less and less popular, it seems to value DI more as the dot net framework as libraries for dependency injection and there are other libraries specific to Xamarin. At the end of the day though, DI in Android has been popular for quite some time and has standard practices in regards to DI. I’m just going to share my thoughts on some of the common ones. I think this would be fun to revisit this as time goes on and see how my opinion changes.",
+          "code_snippet": ""
+        },
+        {
+          "heading": "Dagger",
+          "paragraph": "This is where I started in 2017 with Android DI. At the time this felt like such a massive undertaking because it was difficult to isolate what was going on. Diving into large codebases for the first time was already difficult but dealing with DI and code generation was pretty overwhelming. After making a dozen sample apps with injecting a simple service into a view model I started to realize how powerful Dagger and DI in general was. Having Dagger create an instance of a class that was ready to go was really interesting. I didn't like how messy Dagger Components could get, especially as the dependency graph grows but oh well, that's just the cost of scaling I guess? It certainly made things much easier to unit test though since you could make test components and mock dependencies. Before that, if I’m being honest, I would just not unit test certain parts of the code because I didn't want to create an entire test instance of SQLite or figure out how to manually mock those dependencies.",
+          "code_snippet": ""
+        },
+        {
+          "heading": "Hilt",
+          "paragraph": "Later on I heard about two new frameworks for DI: Koin and Hilt. Koin was this Kotlin-first library that was more of a service locator. Hilt was an abstraction layer built on top of Dagger and Google formally endorsed it so I went with Hilt and used Hilt for years. Like I said before, since it's just an abstraction layer built on top of Dagger, it felt like using Dagger with cheat codes. Much of the boilerplate was removed, support for view models were much better, and when compose came out it made using DI in compose pretty seamless. The things that I didn’t like about using hilt was I felt a little more sandboxed. With the emergence of Kotlin Multi Platform allowing Kotlin code to be run on iOS as well, Hilt couldn’t be used since it still uses Java under the hood. Since Koin is Kotlin-first, I wanted to see how that worked and what kind of impact that had on performance.",
+          "code_snippet": ""
+        },
+        {
+          "heading": "Koin",
+          "paragraph": "Turns out that from the start Koin is easier to use generally speaking. It's simpler and since it's a service locator, it's easier to customize how the dependencies should be provided. Hilt throws during compile time and Koin throws during run time. I guess this has its pros and cons. On one hand it's nice to see all of the DI errors before the code even runs. On the other hand it is nice to have a measurable increase in performance. I also am not a huge fan of annotations. I don’t mind them but I feel like having them everywhere in the code base looks sloppy so I was happy to see Koin not using annotations nearly as much. The service locator pattern feels much cleaner as well and is great to work with. Not that I needed to do that frequently, but using custom scopes in Koin was also much easier than trying to do something like it in Hilt. Turns out Koin also has great support for compose which makes it much easier to adopt. I also really like that it's not tied to the android framework and I can use it wherever else I want outside of an android app.",
+          "code_snippet": ""
+        },
+        {
+          "heading": "Conclusion",
+          "paragraph": "I use Hilt and Koin everyday for the most part at work depending on which code base I'm working in that day and I like both of them. I am currently starting to prefer Koin more but I will still happily work with Hilt where needed. However, no matter which DI Framework is being used, there is always one engineer who thinks that their custom interpretation of DI is the magic bullet and will undoubtedly be the next big thing in android development. In practice though that engineer typically just makes it harder to do simple tasks and begins to remove the benefits of DI altogether. Don’t be that engineer, embrace DI simplicity.",
+          "code_snippet": ""
+        }
+      ]
+    }
+  }
+
+
+
+
+
+]
+
+
+

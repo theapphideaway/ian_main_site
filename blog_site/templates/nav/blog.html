@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ "Blog" }}</h1>
+
+<div class="card-container">
+    {% for article in blog_articles %}
+    <a href="{% url 'blog_site:article_details' article.id %}" class="card-link">
+
+        <div class="card">
+            <div class="card-header">
+                <h3>{{ article.title }}</h3>
+            </div>
+            <div class="card-body">
+                <p>{{ article.date_published }}</p>
+                <p class="truncate">{{ article.content.0.paragraph }}</p>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+<style>
+    /* Set a dark background color for the entire page */
+    body {
+        background-color: #333333;; /* Dark gray background color */
+        color: #ffffff; /* White text color */
+        font-family: "Roboto", sans-serif; /* Material Design typography */
+    }
+
+    /* Center-align the title */
+    h1 {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    /* Apply Material Design card styles */
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .card {
+        background-color: #424242; /* Dark gray card background */
+        color: #ffffff; /* White text color */
+        border-radius: 8px;
+        padding: 16px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        width: 300px;
+    }
+
+    .card-header {
+        margin-bottom: 10px;
+    }
+
+    .card-header h3 {
+        margin: 0;
+        font-size: 24px; /* Material Design heading size */
+    }
+
+    .truncate {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    /* Style for the clickable card */
+    .card-link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .card-link:hover {
+        text-decoration: none;
+    }
+</style>
+{% endblock %}

@@ -12,7 +12,8 @@ def contributions(request):
 
 
 def blog(request):
-    api_url = 'https://ianschoenrock.pythonanywhere.com/api/blog/all/'  # Update the API URL
+    api_path = '/api/blog/all/'  # API endpoint path
+    api_url = f"{request.scheme}://{request.get_host()}{api_path}"  # Construct API URL dynamically
     response = requests.get(api_url)
 
     if response.status_code == 200:

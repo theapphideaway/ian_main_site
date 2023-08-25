@@ -4,25 +4,12 @@
 
 {% block content %}
 <div class="article">
-    <h2>{{ article.title }}</h2>
-    <p>Date Published: {{ article.date_published }}</p>
+
+    {{ article.title|safe }}
+    {{ article.content|safe }}
     <!-- Loop through content array and display headings, paragraphs, and code snippets -->
 
-        {% for content in article.content %}
 
-            {% if content.heading %}
-            <h3>{{ content.heading }}</h3>
-            {% endif %}
-            <p>{{ content.paragraph }}</p>
-
-            {% if content.code_snippet %}
-            <pre>{{ content.code_snippet }}</pre>
-            <hr>
-            {% else %}
-            <hr>
-            {% endif %}
-
-        {% endfor %}
 
 </div>
 <style>

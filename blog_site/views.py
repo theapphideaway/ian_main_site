@@ -55,7 +55,7 @@ def add_blog_article(request):
             }
 
             # Send data to the API endpoint
-            response = requests.post('http://localhost:8000/api/add-blog/', json=api_data)
+            response = requests.post('https://www.ianschoenrock.com/api/add-blog/', json=api_data)
 
             if response.status_code == 201:
                 # Successfully created

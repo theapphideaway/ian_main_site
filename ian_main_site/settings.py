@@ -24,6 +24,9 @@ SECRET_KEY = 'django-insecure-$f&9r^tb*x-t+d@_!l6pe^hm@be**w#%*hb86!bead+rm58+dj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+
+
+
 ALLOWED_HOSTS = ['localhost', 'ianschoenrock.pythonanywhere.com', 'www.ianschoenrock.com']
 
 # Application definition
@@ -37,11 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'blog_site',
-    'blog_api'
+    'blog_api',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -126,8 +131,13 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+]
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.AllowAny'
     ]
 }

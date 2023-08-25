@@ -5,6 +5,7 @@
     "fields": {
       "title": "Insertion Sort and Loop Invariants",
       "date_published": "2023-08-22",
+      "tag": "Algorithms",
       "content": [
         {
           "heading": "",
@@ -51,6 +52,7 @@
     "fields": {
       "title": "Why I Specialized in Android Development",
       "date_published": "2023-08-24",
+      "tag": "Android",
       "content": [
         {
           "heading": "",
@@ -101,6 +103,7 @@
     "fields": {
       "title": "Dependency Injection in Android 2023: My Thoughts",
       "date_published": "2023-08-26",
+      "tag": "Android",
       "content": [
         {
           "heading": "",
@@ -130,11 +133,6 @@
       ]
     }
   }
-
-
-
-
-
 ]
 
 

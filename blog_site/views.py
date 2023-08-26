@@ -44,8 +44,11 @@ import requests
 
 def add_blog_article(request):
     if request.method == 'POST':
+        print('Post request made')
         form = BlogArticleForm(request.POST)
+        print('Form variable is set')
         if form.is_valid():
+            print('Form is valid')
             # Prepare data to send to the API
             api_data = {
                 "title": form.cleaned_data['title'],
@@ -53,13 +56,16 @@ def add_blog_article(request):
                 "tag": form.cleaned_data['tag'],
                 "content": form.cleaned_data['content']
             }
+            print('API data is set')
 
             # Send data to the API endpoint
-            response = requests.post('https://www.ianschoenrock.com/api/add-blog/', json=api_data)
+            response = requests.post('http://localhost:8000/api/add-blog/', json=api_data)
+            print('API request is made')
 
             if response.status_code == 201:
+                print('API request is 201')
                 # Successfully created
-                return redirect('blog')
+                return redirect('/blog/')
             else:
                 # Handle the case where the request failed
                 print('Request Failed')
@@ -82,7 +88,7 @@ def edit_blog_article(request, id):
             article.tag = form.cleaned_data['tag']
             article.content = form.cleaned_data['content']
             article.save()
-            return redirect('blog-articles')  # Redirect to article list after successful update
+            return redirect('/blog/')  # Redirect to article list after successful update
     else:
         form = BlogArticleForm(initial={
             'title': article.title,

@@ -59,7 +59,10 @@ def add_blog_article(request):
             print('API data is set')
 
             # Send data to the API endpoint
-            response = requests.post('http://localhost:8000/api/add-blog/', json=api_data)
+
+            api_path = '/api/add-blog//'  # API endpoint path
+            api_url = f"{request.scheme}://{request.get_host()}{api_path}"
+            response = requests.post(api_url, json=api_data)
             print('API request is made')
 
             if response.status_code == 201:

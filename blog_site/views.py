@@ -60,7 +60,7 @@ def add_blog_article(request):
 
             # Send data to the API endpoint
 
-            api_path = '/api/add-blog//'  # API endpoint path
+            api_path = '/api/add-blog/'  # API endpoint path
             api_url = f"{request.scheme}://{request.get_host()}{api_path}"
             response = requests.post(api_url, json=api_data)
             print('API request is made')

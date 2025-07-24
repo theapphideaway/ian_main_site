@@ -101,3 +101,11 @@ def edit_blog_article(request, id):
         })
 
     return render(request, 'article/edit_blog_article.html', {'form': form})
+
+
+def math_test(request):
+    return render(request, 'test/math_test.html')
+
+
+def experience(request):
+    return render(request, 'nav/experience.html')

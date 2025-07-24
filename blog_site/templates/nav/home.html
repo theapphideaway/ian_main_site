@@ -1,5 +1,401 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
 {% block content %}
-    <!-- Your page-specific content here -->
+<style>
+  /* theme vars */
+  :root {
+    --bg:        #1a1a1a;
+    --surface:   #2d2d2d;
+    --surface-light: #3a3a3a;
+    --primary:   #4CAF50;
+    --android-green: #3DDC84;
+    --ios-blue: #007AFF;
+    --accent:    #FF6B35;
+    --on-surface:#ffffff;
+    --text-secondary: #b0b0b0;
+  }
+
+  /* Override Bootstrap dark theme */
+  .dark-theme {
+    background-color: var(--bg) !important;
+    color: var(--on-surface) !important;
+  }
+
+  .container.dark-theme {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--on-surface);
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 100px 16px 80px;
+    background: linear-gradient(135deg, var(--bg) 0%, var(--surface) 100%);
+  }
+  .hero h1 {
+    font-size: 3.5rem;
+    margin: 0 0 16px;
+    font-weight: 700;
+  }
+  .hero .subtitle {
+    font-size: 1.4rem;
+    margin: 0 0 8px;
+    color: var(--android-green);
+    font-weight: 500;
+  }
+  .hero p {
+    font-size: 1.1rem;
+    margin: 0 0 32px;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .btn {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  }
+  .btn:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
+  }
+
+  /* SECTIONS */
+  .section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 16px;
+  }
+  .section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .section-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+  }
+
+  /* ABOUT */
+  .about-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 800px;
+  }
+  .highlight {
+    color: var(--android-green);
+    font-weight: 500;
+  }
+
+  /* EXPERTISE SECTIONS */
+  .expertise-section {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+  
+  .android-section {
+    border-left: 4px solid var(--android-green);
+  }
+  
+  .ios-section {
+    border-left: 4px solid var(--ios-blue);
+  }
+  
+  .math-section {
+    border-left: 4px solid var(--accent);
+  }
+
+  .expertise-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  
+  .expertise-icon {
+    font-size: 2rem;
+    margin-right: 16px;
+  }
+  
+  .android-section .expertise-icon { color: var(--android-green); }
+  .ios-section .expertise-icon { color: var(--ios-blue); }
+  .math-section .expertise-icon { color: var(--accent); }
+
+  .expertise-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  
+  .tech-tag {
+    background: var(--surface-light);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .android-section .tech-tag { border-color: var(--android-green); }
+  .ios-section .tech-tag { border-color: var(--ios-blue); }
+  .math-section .tech-tag { border-color: var(--accent); }
+
+  .experience-highlights {
+    margin-top: 24px;
+  }
+  
+  .experience-highlights ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .experience-highlights li {
+    padding: 8px 0;
+    padding-left: 24px;
+    position: relative;
+  }
+  
+  .experience-highlights li:before {
+    content: "▶";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+  }
+
+  /* CONTACT */
+  .contact {
+    text-align: center;
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 60px 40px;
+  }
+  
+  .contact h2 {
+    margin-bottom: 20px;
+  }
+  
+  .contact p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+  }
+  
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .contact-link {
+    background: var(--surface-light);
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .contact-link:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .hero .subtitle { font-size: 1.2rem; }
+    .section { padding: 60px 16px; }
+    .expertise-section { padding: 24px; }
+    .contact-links { flex-direction: column; align-items: center; }
+  }
+</style>
+
+<section class="hero">
+  <h1>Ian Schoenrock</h1>
+  <div class="subtitle">Mobile Development Expert</div>
+  <p>
+    Founding Engineer, CTO, & Senior Mobile Engineer specializing in Android development with 8+ years of experience
+    building enterprise-scale applications for defense, healthcare, IoT, and fitness industries.
+  </p>
+  <a href="{% url 'blog_site:experience' %}" class="btn">
+    View Detailed Experience
+  </a>
+</section>
+
+<section id="about" class="section">
+  <h2>About Me</h2>
+  <div class="about-content">
+    <p>
+      I'm a <span class="highlight">mobile development expert</span> with deep specialization in Android development 
+      and comprehensive iOS experience. Over 8 years, I've architected and delivered mission-critical applications 
+      for diverse industries including defense (Special Forces), healthcare (100K+ users), IoT ecosystems, 
+      and fitness platforms.
+    </p>
+    <p>
+      Currently serving as <span class="highlight">Founding Engineer and CTO at Culture Shock</span>, I combine technical leadership
+      with hands-on development expertise. My passion extends beyond mobile development into algorithms, 
+      mathematics, and AI integration, bringing a comprehensive problem-solving approach to every project.
+    </p>
+  </div>
+</section>
+
+<section id="expertise" class="section">
+  <h2>Core Expertise</h2>
+
+  <!-- Android Section -->
+  <div class="expertise-section android-section">
+    <div class="expertise-header">
+      <div class="expertise-icon">🤖</div>
+      <h3 class="expertise-title">Android Development Leadership</h3>
+    </div>
+    <p>
+      Primary expertise with 8+ years of native Android development, leading platform modernization 
+      initiatives and architecting enterprise-scale solutions for millions of users.
+    </p>
+    
+    <div class="tech-grid">
+      <span class="tech-tag">Kotlin & Coroutines</span>
+      <span class="tech-tag">Jetpack Compose</span>
+      <span class="tech-tag">Android SDK</span>
+      <span class="tech-tag">AOSP Integration</span>
+      <span class="tech-tag">Hilt & Dagger</span>
+      <span class="tech-tag">Room Database</span>
+      <span class="tech-tag">Retrofit & OkHttp</span>
+      <span class="tech-tag">Android NDK</span>
+      <span class="tech-tag">Custom Launchers</span>
+      <span class="tech-tag">BLE & IoT</span>
+      <span class="tech-tag">Push Notifications</span>
+      <span class="tech-tag">Inter-process Communication</span>
+    </div>
+
+    <div class="experience-highlights">
+      <strong>Key Achievements:</strong>
+      <ul>
+        <li>Led complete Java-to-Kotlin migrations across multiple enterprise applications</li>
+        <li>Architected Android-based trucking platform deployed on thousands of ruggedized tablets</li>
+        <li>Developed mission-critical defense applications for Special Forces operations</li>
+        <li>Built encrypted BLE communication systems for Milwaukee Tool's IoT ecosystem</li>
+        <li>Modernized UI/UX through comprehensive XML-to-Jetpack Compose migrations</li>
+        <li>Created proprietary launcher applications and push notification SDKs</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- iOS Section -->
+  <div class="expertise-section ios-section">
+    <div class="expertise-header">
+      <div class="expertise-icon">📱</div>
+      <h3 class="expertise-title">iOS Development Excellence</h3>
+    </div>
+    <p>
+      Comprehensive iOS development experience creating counterpart applications to Android solutions, 
+      with expertise in modern Swift frameworks and Apple ecosystem integration.
+    </p>
+    
+    <div class="tech-grid">
+      <span class="tech-tag">Swift & Objective-C</span>
+      <span class="tech-tag">SwiftUI & UIKit</span>
+      <span class="tech-tag">Combine Framework</span>
+      <span class="tech-tag">Xcode & Instruments</span>
+      <span class="tech-tag">CocoaPods</span>
+      <span class="tech-tag">Alamofire</span>
+      <span class="tech-tag">Core Data</span>
+      <span class="tech-tag">Apple APIs</span>
+    </div>
+
+    <div class="experience-highlights">
+      <strong>Key Achievements:</strong>
+      <ul>
+        <li>Developed iOS counterparts to existing Android defense applications</li>
+        <li>Architected healthcare applications serving 100K+ members on iOS platform</li>
+        <li>Implemented cross-platform Flutter solutions with native iOS integration</li>
+        <li>Created proof-of-concept applications for rapid prototyping and validation</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Math & Algorithms Section -->
+  <div class="expertise-section math-section">
+    <div class="expertise-header">
+      <div class="expertise-icon">🧮</div>
+      <h3 class="expertise-title">Algorithms & Mathematics</h3>
+    </div>
+    <p>
+      Strong foundation in computer science fundamentals, mathematical modeling, and algorithmic problem-solving, 
+      with growing expertise in AI/ML integration for mobile applications.
+    </p>
+    
+    <div class="tech-grid">
+      <span class="tech-tag">Data Structures</span>
+      <span class="tech-tag">Algorithm Optimization</span>
+      <span class="tech-tag">Computational Complexity</span>
+      <span class="tech-tag">Discrete Mathematics</span>
+      <span class="tech-tag">Linear Algebra</span>
+      <span class="tech-tag">Machine Learning</span>
+      <span class="tech-tag">Statistical Analysis</span>
+      <span class="tech-tag">AI Integration</span>
+    </div>
+
+    <div class="experience-highlights">
+      <strong>Applications:</strong>
+      <ul>
+        <li>Optimized performance-critical mobile algorithms for real-time applications</li>
+        <li>Implemented efficient data processing for IoT device communication</li>
+        <li>Applied mathematical modeling for diagnostic code extraction systems</li>
+        <li>Integrated AI-driven features into production mobile applications</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="contact">
+    <h2>Let's Connect</h2>
+    <p>
+      Interested in discussing mobile development projects, technical leadership opportunities, 
+      or algorithmic challenges? I'd love to hear from you.
+    </p>
+    <div class="contact-links">
+      <a href="{% url 'blog_site:experience' %}" class="contact-link">
+        View My Expertise
+      </a>
+      <a href="https://linkedin.com/in/ian-schoenrock-045268122" target="_blank" class="contact-link">
+        LinkedIn Profile
+      </a>
+      <a href="mailto:ianschoenrock@gmail.com" class="contact-link">
+        Email Me
+      </a>
+    </div>
+  </div>
+</section>
+
+
 {% endblock %}

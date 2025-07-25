@@ -1,510 +1,298 @@
-
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<!-- Material Design 3 inspired theme with enhanced responsiveness -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  integrity="sha512-pD1H8DULTG5V+uXL1+qQcF6h7gx5D3P3UAD4qm6b+5qfR1eWjMcjpyU0nz8Gt6YKP8tK3cH5hKUd8LIpYB4R2Q=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
 <style>
-  /* theme vars */
+  /* Ensure proper scaling */
+  html, *, *::before, *::after { box-sizing: border-box; }
+  html { width: 100%; }
+
+  /* Material 3 Semantic Color Tokens */
   :root {
-    --bg:        #1a1a1a;
-    --surface:   #2d2d2d;
-    --surface-light: #3a3a3a;
-    --primary:   #4CAF50;
-    --android-green: #3DDC84;
-    --ios-blue: #007AFF;
-    --accent:    #FF6B35;
-    --on-surface:#ffffff;
-    --text-secondary: #b0b0b0;
+    /* Core palettes */
+    --md-sys-color-primary: #4CAF50;
+    --md-sys-color-on-primary: #FFFFFF;
+    --md-sys-color-secondary: #03DAC6;
+    --md-sys-color-on-secondary: #000000;
+    --md-sys-color-surface: #121212;
+    --md-sys-color-on-surface: #FFFFFF;
+    --md-sys-color-surface-variant: #1E1E1E;
+    --md-sys-color-on-surface-variant: #B0B0B0;
+    /* Elevation shadows */
+    --elevation-level1: 0px 1px 2px rgba(0,0,0,0.05), 0px 1px 3px rgba(0,0,0,0.1);
+    --elevation-level2: 0px 2px 4px rgba(0,0,0,0.06), 0px 4px 6px rgba(0,0,0,0.1);
+    --elevation-level3: 0px 4px 8px rgba(0,0,0,0.07), 0px 8px 12px rgba(0,0,0,0.1);
+    /* Typography & shape */
+    --font-family: 'Roboto', sans-serif;
+    --type-display-large: 3.5rem;
+    --type-headline-small: 1.25rem;
+    --type-body-medium: 1rem;
+    --type-label-large: 0.875rem;
+    --shape-small: 4px;
+    --shape-medium: 8px;
+    --shape-large: 12px;
+    --space: 8px;
   }
-
-  /* Override Bootstrap dark theme */
-  .dark-theme {
-    background-color: var(--bg) !important;
-    color: var(--on-surface) !important;
-  }
-
-  .container.dark-theme {
-    max-width: none !important;
-    padding: 0 !important;
-  }
-
+  /* Base styles */
   body {
-    background-color: var(--bg);
-    color: var(--on-surface);
-    font-family: "Roboto", sans-serif;
     margin: 0;
-    line-height: 1.6;
+    padding: 0;
+    background-color: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+    font-family: var(--font-family);
+    line-height: 1.5;
+    width: 100%;
   }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-
-  /* HERO */
+  a { color: var(--md-sys-color-primary); text-decoration: none; transition: color 0.2s ease; }
+  a:hover { color: var(--md-sys-color-secondary); }
+  /* Sections */
+  .section { width: 90%; max-width: 960px; margin: 0 auto; padding: calc(var(--space)*6) var(--space); }
+  h2 { font-size: var(--type-display-large); margin-bottom: calc(var(--space)*2); }
+  h3 { font-size: var(--type-headline-small); margin: 0; }
+  p { font-size: var(--type-body-medium); margin-bottom: var(--space); }
+  .highlight { color: var(--md-sys-color-secondary); font-weight: 500; }
+  /* Hero */
   .hero {
     text-align: center;
-    padding: 100px 16px 80px;
-    background: linear-gradient(135deg, var(--bg) 0%, var(--surface) 100%);
+    padding: calc(var(--space)*8) var(--space);
+    background-color: var(--md-sys-color-surface-variant);
+    box-shadow: var(--elevation-level1);
+    border-radius: var(--shape-large);
+    margin: calc(var(--space)*4) auto;
+    width: 90%;
+    max-width: 640px;
   }
-  .hero h1 {
-    font-size: 3.5rem;
-    margin: 0 0 16px;
-    font-weight: 700;
-  }
-  .hero .subtitle {
-    font-size: 1.4rem;
-    margin: 0 0 8px;
-    color: var(--android-green);
-    font-weight: 500;
-  }
-  .hero p {
-    font-size: 1.1rem;
-    margin: 0 0 32px;
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  .hero-title { font-size: var(--type-display-large); font-weight: 700; margin-bottom: var(--space); }
+  .hero-subtitle { font-size: 1.5rem; font-weight: 500; color: var(--md-sys-color-secondary); margin-bottom: var(--space); }
+  .hero-text { color: var(--md-sys-color-on-surface-variant); }
   .btn {
     display: inline-block;
-    background: var(--primary);
-    color: #fff;
-    padding: 14px 28px;
-    border-radius: 6px;
+    padding: calc(var(--space)*2) calc(var(--space)*4);
+    font-size: var(--type-label-large);
     font-weight: 500;
-    font-size: 1.1rem;
-    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    border-radius: var(--shape-medium);
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    box-shadow: var(--elevation-level2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .btn:hover {
-    background: #45a049;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
-  }
-
-  /* SECTIONS */
-  .section {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 80px 16px;
-  }
-  .section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 16px;
-    font-weight: 700;
-  }
-  .section-subtitle {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-bottom: 40px;
-  }
-
-  /* ABOUT */
-  .about-content {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    max-width: 800px;
-  }
-  .highlight {
-    color: var(--android-green);
-    font-weight: 500;
-  }
-
-  /* COMPANIES SECTION */
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--elevation-level3); }
+  /* About */
+  .about-content { padding-top: var(--space); }
+  /* Companies grid */
   .companies-section {
-    background: var(--surface);
-    border-radius: 12px;
-    padding: 40px 20px;
-    margin: 60px 0;
-    text-align: center;
-    overflow: hidden;
+ background-color: var(--md-sys-color-surface-variant);
+  padding: calc(var(--space)*5) calc(var(--space)*3);
+    border-radius: var(--shape-large);
+    box-shadow: var(--elevation-level1);
   }
-
-  .companies-section h2 {
-    margin-bottom: 30px;
-    color: var(--on-surface);
-    font-size: 1.8rem;
+  .companies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: calc(var(--space)*4);
   }
-
-  .companies-scroll {
-    overflow: hidden;
-    white-space: nowrap;
-    position: relative;
-  }
-
-  .companies-track {
-    display: inline-flex;
-    animation: scroll 20s linear infinite;
-    gap: 60px;
-    align-items: center;
-  }
-
   .company-logo {
-    flex-shrink: 0;
-    width: 160px;
-    height: 80px;
-    background: white;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: all 0.3s ease;
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    background: #FFF;
+    border-radius: var(--shape-small);
+    box-shadow: var(--elevation-level1);
+    background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
-    padding: 12px;
-    box-sizing: border-box;
-    overflow: hidden;
   }
-
-  .company-logo:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  /* Expertise grid */
+  .expertise-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: calc(var(--space)*4); }
+  .expertise-card {
+    background-color: var(--md-sys-color-surface-variant);
+    border-radius: var(--shape-medium);
+    box-shadow: var(--elevation-level1);
+    padding: calc(var(--space)*3);
   }
-
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  /* Pause animation on hover */
-  .companies-scroll:hover .companies-track {
-    animation-play-state: paused;
-  }
-
-  /* EXPERTISE SECTIONS */
-  .expertise-section {
-    background: var(--surface);
-    border-radius: 12px;
-    padding: 40px;
-    margin-bottom: 40px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  }
-
-  .android-section {
-    border-left: 4px solid var(--android-green);
-  }
-
-  .ios-section {
-    border-left: 4px solid var(--ios-blue);
-  }
-
-  .math-section {
-    border-left: 4px solid var(--accent);
-  }
-
-  .expertise-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 24px;
-  }
-
-  .expertise-icon {
-    font-size: 2rem;
-    margin-right: 16px;
-  }
-
-  .android-section .expertise-icon { color: var(--android-green); }
-  .ios-section .expertise-icon { color: var(--ios-blue); }
-  .math-section .expertise-icon { color: var(--accent); }
-
-  .expertise-title {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin: 0;
-  }
-
-  .tech-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin: 20px 0;
-  }
-
+  .expertise-header { display: flex; align-items: center; gap: var(--space); margin-bottom: var(--space); }
+  .expertise-icon { font-size: 2rem; }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: var(--space); margin: var(--space) 0; }
   .tech-tag {
-    background: var(--surface-light);
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    border: 1px solid rgba(255,255,255,0.1);
+    padding: var(--space) calc(var(--space)*2);
+    border-radius: var(--shape-large);
+    background-color: var(--md-sys-color-surface);
+    font-size: var(--type-label-large);
   }
-
-  .android-section .tech-tag { border-color: var(--android-green); }
-  .ios-section .tech-tag { border-color: var(--ios-blue); }
-  .math-section .tech-tag { border-color: var(--accent); }
-
-  .experience-highlights {
-    margin-top: 24px;
-  }
-
-  .experience-highlights ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .experience-highlights li {
-    padding: 8px 0;
-    padding-left: 24px;
-    position: relative;
-  }
-
-  .experience-highlights li:before {
-    content: "▶";
-    position: absolute;
-    left: 0;
-    color: var(--primary);
-  }
-
-  /* CONTACT */
-  .contact {
-    text-align: center;
-    background: var(--surface);
-    border-radius: 12px;
-    padding: 60px 40px;
-  }
-
-  .contact h2 {
-    margin-bottom: 20px;
-  }
-
-  .contact p {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-bottom: 30px;
-  }
-
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
+  .experience-highlights ul { margin: var(--space) 0 0; padding-left: calc(var(--space)*2); }
+  .experience-highlights li { margin-bottom: var(--space); }
+  /* Contact */
+  .contact-links { display: flex; flex-wrap: wrap; gap: calc(var(--space)*3); justify-content: center; padding-top: var(--space); }
   .contact-link {
-    background: var(--surface-light);
-    padding: 12px 24px;
-    border-radius: 6px;
-    border: 1px solid rgba(255,255,255,0.1);
+    padding: calc(var(--space)*2) calc(var(--space)*3);
+    border-radius: var(--shape-medium);
+    background-color: var(--md-sys-color-surface-variant);
+    box-shadow: var(--elevation-level1);
+    font-size: var(--type-label-large);
   }
-
-  .contact-link:hover {
-    background: var(--primary);
-    border-color: var(--primary);
+  #contact h2 {
+  text-align: center;
+}
+  /* Responsive breakpoints */
+  @media (max-width: 1024px) {
+    .hero { padding: calc(var(--space)*6) var(--space); }
+    .section { padding: calc(var(--space)*4) var(--space); }
   }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    .hero h1 { font-size: 2.5rem; }
-    .hero .subtitle { font-size: 1.2rem; }
-    .section { padding: 60px 16px; }
-    .expertise-section { padding: 24px; }
-    .companies-section { padding: 30px 15px; }
-    .companies-track { gap: 40px; }
-    .company-logo { width: 140px; height: 70px; font-size: 12px; padding: 10px; }
-    .contact-links { flex-direction: column; align-items: center; }
+  @media (max-width: 600px) {
+    h2 { font-size: 2rem; }
+    .expertise-container { grid-template-columns: 1fr; }
+    .hero-title { font-size: 2.5rem; }
+    .hero-subtitle { font-size: 1.25rem; }
+    .btn { width: 100%; text-align: center; padding: calc(var(--space)*2) 0; }
+  }
+  @media (max-width: 400px) {
+    h2 { font-size: 1.75rem; }
+    .hero-title { font-size: 2rem; }
+    .hero-subtitle { font-size: 1rem; }
   }
 </style>
 
 <section class="hero">
-  <h1>Ian Schoenrock</h1>
-  <div class="subtitle">Mobile Development Expert</div>
-  <p>
-    Founding Engineer, CTO, & Senior Mobile Engineer specializing in Android development with 8+ years of experience
-    building enterprise-scale applications for defense, healthcare, IoT, and fitness industries.
-  </p>
-  <a href="{% url 'blog_site:experience' %}" class="btn">
-    View Detailed Experience
-  </a>
+  <div class="hero-title">Ian Schoenrock</div>
+  <div class="hero-subtitle">Mobile Development Expert</div>
+  <div class="hero-text">
+    Founding Engineer, CTO, & Senior Mobile Engineer specializing in Android development with 8+ years of experience building enterprise-scale applications for defense, healthcare, IoT, and fitness industries.
+  </div>
+  <a href="{% url 'blog_site:experience' %}" class="btn">View Detailed Experience</a>
 </section>
 
 <section id="about" class="section">
   <h2>About Me</h2>
   <div class="about-content">
-    <p>
-      I'm a <span class="highlight">mobile development expert</span> with deep specialization in Android development
-      and comprehensive iOS experience. Over 8 years, I've architected and delivered mission-critical applications
-      for diverse industries including defense (Special Forces), healthcare (100K+ users), IoT ecosystems,
-      and fitness platforms.
-    </p>
-    <p>
-      Currently serving as <span class="highlight">Founding Engineer and CTO at Culture Shock</span>, I lead end-to-end product development
-      from conception to market deployment, architecting a comprehensive news aggregation platform serving global audiences.
-      My expertise spans full-stack development, from scalable Django REST APIs aggregating content from 180+ countries to
-      native mobile applications with advanced features like internationalization across 30+ languages.
-    </p>
+    <p>I'm a <span class="highlight">mobile development expert</span> with deep specialization in Android development and comprehensive iOS experience. Over 8 years, I've architected and delivered mission-critical applications for diverse industries including defense (Special Forces), healthcare (100K+ users), IoT ecosystems, and fitness platforms.</p>
+    <p>Currently serving as <span class="highlight">Founding Engineer and CTO at Culture Shock</span>, I lead end-to-end product development from conception to market deployment, architecting a comprehensive news aggregation platform serving global audiences. My expertise spans full-stack development, from scalable Django REST APIs aggregating content from 180+ countries to native mobile applications with advanced features like internationalization across 30+ languages.</p>
   </div>
 </section>
 
-<section id="companies" class="section">
-  <div class="companies-section">
-    <h2>Companies I've Worked With</h2>
-
-    <div class="companies-scroll">
-      <div class="companies-track">
-        <!-- First set of logos -->
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Culture-Shock.png' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Daxko.png' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Platform-Science.png' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Novetta.png' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Milwaukee.jpg' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Lumina.jpg' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Anthem.jpg' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Transcendent.png' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Zeni.jpg' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Dex.jpg' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Rekor.jpg' %}');"></div>
-
-        <!-- Duplicate set for seamless loop -->
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Culture-Shock.png' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Daxko.png' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Platform-Science.png' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Novetta.png' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Milwaukee.jpg' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Lumina.jpg' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Anthem.jpg' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Transcendent.png' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Zeni.jpg' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Dex.jpg' %}');"></div>
-        <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Rekor.jpg' %}');"></div>
-      </div>
-    </div>
+<section id="companies" class="section companies-section">
+  <h2>Who I've Worked With</h2>
+  <div class="companies-grid">
+    <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Culture-Shock.png' %}');"></div>
+    <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Daxko.png' %}');"></div>
+    <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-DoD.png' %}');"></div>
+    <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Platform-Science.png' %}');"></div>
+    <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Novetta.png' %}');"></div>
+    <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-JSOC.png' %}');"></div>
+    <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Milwaukee.jpg' %}');"></div>
+    <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Lumina.jpg' %}');"></div>
+    <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Anthem.jpg' %}');"></div>
+    <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Transcendent.png' %}');"></div>
+    <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Zeni.jpeg' %}');"></div>
+    <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Dex.jpg' %}');"></div>
+    <div class="company-logo" style="background-image: url('{% static 'blog_site/images/companies/Logo-Rekor.jpg' %}');"></div>
   </div>
 </section>
 
 <section id="expertise" class="section">
   <h2>Core Expertise</h2>
+  <div class="expertise-container">
+    <!-- Android Card -->
 
-  <!-- Android Section -->
-  <div class="expertise-section android-section">
-    <div class="expertise-header">
-      <div class="expertise-icon">🤖</div>
-      <h3 class="expertise-title">Android Development Leadership</h3>
+<div class="expertise-card">
+  <div class="expertise-header">
+    <div class="expertise-icon">
+      <i class="fab fa-android fa-2x"></i>
     </div>
-    <p>
-      Primary expertise with 8+ years of native Android development, leading platform modernization
-      initiatives and architecting enterprise-scale solutions for millions of users.
-    </p>
-
-    <div class="tech-grid">
-      <span class="tech-tag">Kotlin & Coroutines</span>
-      <span class="tech-tag">Jetpack Compose</span>
-      <span class="tech-tag">Android SDK</span>
-      <span class="tech-tag">AOSP Integration</span>
-      <span class="tech-tag">Hilt & Dagger</span>
-      <span class="tech-tag">Room Database</span>
-      <span class="tech-tag">Retrofit & OkHttp</span>
-      <span class="tech-tag">Android NDK</span>
-      <span class="tech-tag">Custom Launchers</span>
-      <span class="tech-tag">BLE & IoT</span>
-      <span class="tech-tag">Push Notifications</span>
-      <span class="tech-tag">Inter-process Communication</span>
-    </div>
-
-    <div class="experience-highlights">
-      <strong>Key Achievements:</strong>
-      <ul>
-        <li>Built global news aggregation platform serving 180+ countries with 500+ production deployments maintaining 99%+ uptime</li>
-        <li>Developed mission-critical defense applications for Special Forces and JSOC operations requiring highest security clearances</li>
-        <li>Architected custom Android OS platform deployed on thousands of ruggedized tablets for commercial trucking industry</li>
-        <li>Led AOSP integration and built proprietary launcher applications managing complex inter-process communication networks</li>
-        <li>Created encrypted BLE communication systems for Milwaukee Tool's IoT ecosystem connecting mobile devices to power tools</li>
-        <li>Delivered enterprise healthcare applications serving 100K+ members across highly regulated environments</li>
-      </ul>
-    </div>
+    <h3>Android Development</h3>
   </div>
-
-  <!-- iOS Section -->
-  <div class="expertise-section ios-section">
-    <div class="expertise-header">
-      <div class="expertise-icon">📱</div>
-      <h3 class="expertise-title">iOS Development Excellence</h3>
-    </div>
-    <p>
-      Comprehensive iOS development experience creating counterpart applications to Android solutions,
-      with expertise in modern Swift frameworks and Apple ecosystem integration.
-    </p>
-
-    <div class="tech-grid">
-      <span class="tech-tag">Swift & Objective-C</span>
-      <span class="tech-tag">SwiftUI & UIKit</span>
-      <span class="tech-tag">Combine Framework</span>
-      <span class="tech-tag">Xcode & Instruments</span>
-      <span class="tech-tag">CocoaPods</span>
-      <span class="tech-tag">Alamofire</span>
-      <span class="tech-tag">Core Data</span>
-      <span class="tech-tag">Apple APIs</span>
-    </div>
-
-    <div class="experience-highlights">
-      <strong>Key Achievements:</strong>
-      <ul>
-        <li>Built companion iOS applications for global news platform with SwiftUI, Core Data, and internationalization across 30+ languages</li>
-        <li>Developed iOS counterparts to Android defense applications for Special Forces operations using cutting-edge Apple APIs</li>
-        <li>Architected enterprise healthcare iOS applications serving 100K+ members with strict accessibility and security compliance</li>
-        <li>Successfully navigated iOS App Store review process and maintained compliance for iPad-optimized professional applications</li>
-        <li>Implemented advanced iOS features including text-to-speech, audio recording, and custom touch interactions for tablet interfaces</li>
-        <li>Led Flutter-to-native iOS migrations maintaining platform-specific UX standards while reducing maintenance overhead</li>
-      </ul>
-    </div>
+  <p>8+ years developing native Android applications, from consumer apps to enterprise platforms. I build scalable solutions and lead platform modernization projects.</p>
+  <div class="tech-tags">
+    <span class="tech-tag">Kotlin & Coroutines</span>
+    <span class="tech-tag">Jetpack Compose</span>
+    <span class="tech-tag">Android SDK</span>
+    <span class="tech-tag">AOSP Integration</span>
+    <span class="tech-tag">Hilt & Dagger</span>
+    <span class="tech-tag">Room Database</span>
+    <span class="tech-tag">Retrofit & OkHttp</span>
+    <span class="tech-tag">Android NDK</span>
+    <span class="tech-tag">Custom Launchers</span>
+    <span class="tech-tag">BLE & IoT</span>
+    <span class="tech-tag">Push Notifications</span>
+    <span class="tech-tag">Inter-process Communication</span>
   </div>
-
-  <!-- Math & Algorithms Section -->
-  <div class="expertise-section math-section">
-    <div class="expertise-header">
-      <div class="expertise-icon">🧮</div>
-      <h3 class="expertise-title">Algorithms & Mathematics</h3>
+  <div class="experience-highlights">
+    <ul>
+      <li>Built a global news platform serving 180+ countries with 500+ deployments and 99%+ uptime</li>
+      <li>Developed defense applications for Special Forces operations with security clearance requirements</li>
+      <li>Created a custom Android OS platform for thousands of tablets in commercial trucking</li>
+      <li>Integrated AOSP and built proprietary launchers with complex inter-process communication</li>
+      <li>Built encrypted BLE systems connecting Milwaukee Tool's mobile apps to IoT power tools</li>
+      <li>Shipped healthcare applications serving 100K+ members in regulated environments</li>
+    </ul>
+  </div>
+</div>
+    <!-- iOS Card -->
+   <div class="expertise-card">
+  <div class="expertise-header">
+    <div class="expertise-icon">
+      <i class="fab fa-apple fa-2x"></i>
     </div>
-    <p>
-      Strong foundation in computer science fundamentals, mathematical modeling, and algorithmic problem-solving,
-      with growing expertise in AI/ML integration for mobile applications.
-    </p>
-
-    <div class="tech-grid">
-      <span class="tech-tag">Data Structures</span>
-      <span class="tech-tag">Algorithm Optimization</span>
-      <span class="tech-tag">Computational Complexity</span>
-      <span class="tech-tag">Discrete Mathematics</span>
-      <span class="tech-tag">Linear Algebra</span>
-      <span class="tech-tag">Machine Learning</span>
-      <span class="tech-tag">Statistical Analysis</span>
-      <span class="tech-tag">AI Integration</span>
-    </div>
-
-    <div class="experience-highlights">
-      <strong>Applications:</strong>
-      <ul>
+    <h3>iOS Development</h3>
+  </div>
+  <p>Full-stack iOS development using modern Swift frameworks. I build iOS counterparts to Android solutions and native apps optimized for Apple's ecosystem.</p>
+  <div class="tech-tags">
+    <span class="tech-tag">Swift & Objective-C</span>
+    <span class="tech-tag">SwiftUI & UIKit</span>
+    <span class="tech-tag">Combine Framework</span>
+    <span class="tech-tag">Xcode & Instruments</span>
+    <span class="tech-tag">CocoaPods</span>
+    <span class="tech-tag">Alamofire</span>
+    <span class="tech-tag">Core Data</span>
+    <span class="tech-tag">Apple APIs</span>
+  </div>
+  <div class="experience-highlights">
+    <ul>
+      <li>Built iOS versions of the global news platform with SwiftUI, Core Data, and 30+ language support</li>
+      <li>Developed iOS defense applications for Special Forces using advanced Apple APIs</li>
+      <li>Created healthcare iOS apps serving 100K+ members with accessibility and security compliance</li>
+      <li>Navigated App Store review process for iPad-optimized professional applications</li>
+      <li>Implemented text-to-speech, audio recording, and custom touch interactions for tablet interfaces</li>
+      <li>Migrated Flutter apps to native iOS while maintaining platform-specific UX standards</li>
+    </ul>
+  </div>
+</div>
+    <!-- Math & Algorithms Card -->
+    <div class="expertise-card">
+      <div class="expertise-header"><i class="fas fa-square-root-alt fa-2x"></i>
+<h3>Algorithms & Mathematics</h3></div>
+      <p>Strong foundation in computer science fundamentals, mathematical modeling, and algorithmic problem-solving, with growing expertise in AI/ML integration for mobile applications.</p>
+      <div class="tech-tags">
+        <span class="tech-tag">Data Structures</span>
+        <span class="tech-tag">Algorithm Optimization</span>
+        <span class="tech-tag">Computational Complexity</span>
+        <span class="tech-tag">Discrete Mathematics</span>
+        <span class="tech-tag">Linear Algebra</span>
+        <span class="tech-tag">Machine Learning</span>
+        <span class="tech-tag">Statistical Analysis</span>
+        <span class="tech-tag">AI Integration</span>
+      </div>
+      <div class="experience-highlights"><ul>
         <li>Optimized performance-critical mobile algorithms for real-time applications</li>
         <li>Implemented efficient data processing for IoT device communication</li>
         <li>Applied mathematical modeling for diagnostic code extraction systems</li>
         <li>Integrated AI-driven features into production mobile applications</li>
-      </ul>
+      </ul></div>
     </div>
   </div>
 </section>
 
 <section id="contact" class="section">
-  <div class="contact">
-    <h2>Let's Connect</h2>
-    <p>
-      Interested in discussing mobile development projects, technical leadership opportunities,
-      or algorithmic challenges? I'd love to hear from you.
-    </p>
-    <div class="contact-links">
-      <a href="{% url 'blog_site:experience' %}" class="contact-link">
-        View My Expertise
-      </a>
-      <a href="https://linkedin.com/in/ian-schoenrock-045268122" target="_blank" class="contact-link">
-        LinkedIn Profile
-      </a>
-      <a href="mailto:ianschoenrock@gmail.com" class="contact-link">
-        Email Me
-      </a>
-    </div>
+  <h2>Let's Connect</h2>
+  <div class="contact-links">
+    <a href="{% url 'blog_site:experience' %}" class="contact-link">View My Expertise</a>
+    <a href="https://linkedin.com/in/ian-schoenrock-045268122" target="_blank" class="contact-link">LinkedIn Profile</a>
+    <a href="mailto:ianschoenrock@gmail.com" class="contact-link">Email Me</a>
   </div>
 </section>
 

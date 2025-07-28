@@ -2,280 +2,460 @@
 {% block content %}
 
 <style>
-  /* Override Bootstrap container for full-width design - BUT PRESERVE NAVBAR */
+  /* Ensure proper scaling */
+  html, *, *::before, *::after { box-sizing: border-box; }
+  html { width: 100%; }
+
+  /* Material 3 Semantic Color Tokens - Match home page */
+  :root {
+    /* Core palettes */
+    --md-sys-color-primary: #4CAF50;
+    --md-sys-color-on-primary: #FFFFFF;
+    --md-sys-color-secondary: #03DAC6;
+    --md-sys-color-on-secondary: #000000;
+    --md-sys-color-surface: #121212;
+    --md-sys-color-on-surface: #FFFFFF;
+    --md-sys-color-surface-variant: #1E1E1E;
+    --md-sys-color-on-surface-variant: #B0B0B0;
+    --md-sys-color-outline: #2D2D2D;
+    /* Elevation shadows */
+    --elevation-level1: 0px 1px 2px rgba(0,0,0,0.05), 0px 1px 3px rgba(0,0,0,0.1);
+    --elevation-level2: 0px 2px 4px rgba(0,0,0,0.06), 0px 4px 6px rgba(0,0,0,0.1);
+    --elevation-level3: 0px 4px 8px rgba(0,0,0,0.07), 0px 8px 12px rgba(0,0,0,0.1);
+    /* Typography & shape */
+    --font-family: 'Roboto', sans-serif;
+    --type-display-large: 3.5rem;
+    --type-headline-small: 1.25rem;
+    --type-body-medium: 1rem;
+    --type-label-large: 0.875rem;
+    --shape-small: 4px;
+    --shape-medium: 8px;
+    --shape-large: 12px;
+    --space: 8px;
+  }
+
+  /* Base styles */
+  .experience-content {
+    background-color: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+    font-family: var(--font-family);
+    line-height: 1.5;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Override Bootstrap container for full-width design */
   .main-container.dark-theme {
     max-width: none !important;
     padding: 0 !important;
   }
 
-  /* Experience Page Styles */
-  :root {
-    --bg:        #0f0f0f;
-    --surface:   #2d2d2d;
-    --surface-light: #3a3a3a;
-    --primary:   #4CAF50;
-    --android-green: #3DDC84;
-    --ios-blue: #007AFF;
-    --accent:    #FF6B35;
-    --on-surface:#ffffff;
-    --text-secondary: #b0b0b0;
-    --border: rgba(255,255,255,0.1);
-  }
-
-  /* Override Bootstrap styles for experience page content only */
-  .experience-content {
-    background-color: var(--bg) !important;
-    color: var(--on-surface) !important;
-    font-family: "Roboto", sans-serif !important;
-  }
-
-  /* REMOVE the custom site-header since we're using Bootstrap navbar */
-  /* .site-header styles removed to prevent conflicts */
-
-  /* PAGE HEADER */
+  /* Page header matching home page hero style */
   .page-header {
-    background: linear-gradient(135deg, var(--bg) 0%, var(--surface) 100%);
-    padding: 60px 16px 40px;
     text-align: center;
+    padding: calc(var(--space)*8) var(--space);
+    background-color: var(--md-sys-color-surface-variant);
+    box-shadow: var(--elevation-level1);
+    border-radius: var(--shape-large);
+    margin: calc(var(--space)*4) auto;
+    width: 90%;
+    max-width: 640px;
   }
+
   .page-header h1 {
-    font-size: 2.5rem;
-    margin: 0 0 16px;
+    font-size: var(--type-display-large);
     font-weight: 700;
-    color: var(--on-surface);
+    margin-bottom: var(--space);
+    color: var(--md-sys-color-on-surface);
   }
+
   .page-header p {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin: 0 auto;
+    color: var(--md-sys-color-on-surface-variant);
+    font-size: var(--type-body-medium);
+    margin: 0;
   }
 
-  /* MAIN CONTENT */
+  /* Main content */
   .main-content {
-    max-width: 1200px;
+    width: 90%;
+    max-width: 960px;
     margin: 0 auto;
-    padding: 40px 16px;
+    padding: calc(var(--space)*6) var(--space);
   }
 
-  /* SUMMARY SECTION */
-  .summary-section {
-    background: var(--surface);
-    border-radius: 12px;
-    padding: 40px;
-    margin-bottom: 40px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  /* Section styling matching home page */
+  .section {
+    background-color: var(--md-sys-color-surface-variant);
+    border-radius: var(--shape-large);
+    box-shadow: var(--elevation-level1);
+    padding: calc(var(--space)*5) calc(var(--space)*3);
+    margin-bottom: calc(var(--space)*4);
   }
-  .summary-section h2 {
-    font-size: 1.8rem;
-    margin: 0 0 20px;
-    color: var(--android-green);
+
+  .section h2 {
+    font-size: var(--type-display-large);
+    margin-bottom: calc(var(--space)*3);
+    text-align: center;
+    color: var(--md-sys-color-on-surface);
   }
+
+  /* Summary stats grid */
   .summary-stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 24px;
-    margin: 30px 0;
+    gap: calc(var(--space)*3);
+    margin: calc(var(--space)*4) 0;
   }
+
   .stat-item {
     text-align: center;
-    padding: 20px;
-    background: var(--surface-light);
-    border-radius: 8px;
+    padding: calc(var(--space)*3);
+    background: var(--md-sys-color-surface);
+    border-radius: var(--shape-medium);
+    box-shadow: var(--elevation-level1);
   }
+
   .stat-number {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--md-sys-color-primary);
     display: block;
   }
+
   .stat-label {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin-top: 4px;
+    font-size: var(--type-label-large);
+    color: var(--md-sys-color-on-surface-variant);
+    margin-top: calc(var(--space)/2);
   }
 
-  /* EXPERIENCE TIMELINE */
-  .experience-section {
-    margin-bottom: 40px;
-  }
-  .experience-section h2 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-    text-align: center;
-  }
-
+  /* Timeline */
   .timeline {
     position: relative;
-    padding-left: 40px;
+    padding-left: 0;
   }
+
   .timeline::before {
     content: '';
     position: absolute;
-    left: 20px;
+    left: calc(var(--space)*2);
     top: 0;
     bottom: 0;
-    width: 2px;
-    background: var(--primary);
+    width: 1px;
+    background: rgba(76, 175, 80, 0.3);
   }
 
   .timeline-item {
     position: relative;
-    background: var(--surface);
-    border-radius: 12px;
-    padding: 30px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    border-left: 4px solid var(--android-green);
+    background: rgba(30, 30, 30, 0.4);
+    border-radius: var(--shape-medium);
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+    padding: calc(var(--space)*4);
+    margin-bottom: calc(var(--space)*3);
+    margin-left: calc(var(--space)*5);
+    border: 1px solid rgba(76, 175, 80, 0.2);
+    transition: all 0.2s ease;
   }
+
+  .timeline-item:hover {
+    background: rgba(30, 30, 30, 0.6);
+    border-color: rgba(76, 175, 80, 0.4);
+    box-shadow: var(--elevation-level2);
+  }
+
   .timeline-item::before {
     content: '';
     position: absolute;
-    left: -46px;
-    top: 30px;
-    width: 12px;
-    height: 12px;
-    background: var(--primary);
+    left: calc(-1 * var(--space)*6);
+    top: calc(var(--space)*4);
+    width: 8px;
+    height: 8px;
+    background: var(--md-sys-color-primary);
     border-radius: 50%;
-    border: 3px solid var(--bg);
+    border: 2px solid var(--md-sys-color-surface-variant);
+    opacity: 0.8;
   }
 
+  /* Special timeline items - more subtle */
+  .cto-item {
+    border-color: rgba(3, 218, 198, 0.3);
+  }
+  .cto-item:hover {
+    border-color: rgba(3, 218, 198, 0.5);
+  }
+  .cto-item::before {
+    background: var(--md-sys-color-secondary);
+    opacity: 0.9;
+  }
+
+  .leadership-item {
+    border-color: rgba(255, 107, 53, 0.3);
+  }
+  .leadership-item:hover {
+    border-color: rgba(255, 107, 53, 0.5);
+  }
+  .leadership-item::before {
+    background: #FF6B35;
+    opacity: 0.9;
+  }
+
+  /* Job header */
   .job-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: calc(var(--space)*3);
     flex-wrap: wrap;
-    gap: 16px;
+    gap: var(--space);
   }
+
   .job-title {
-    font-size: 1.4rem;
+    font-size: var(--type-headline-small);
     font-weight: 600;
-    color: var(--android-green);
+    color: rgba(76, 175, 80, 0.9);
     margin: 0;
   }
-  .company-name {
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin: 4px 0;
+
+  .cto-item .job-title {
+    color: rgba(3, 218, 198, 0.9);
   }
+
+  .leadership-item .job-title {
+    color: rgba(255, 107, 53, 0.9);
+  }
+
+  .company-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: calc(var(--space)/2) 0;
+    color: var(--md-sys-color-on-surface);
+  }
+
   .job-duration {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    background: var(--surface-light);
-    padding: 6px 12px;
-    border-radius: 6px;
+    font-size: var(--type-label-large);
+    color: var(--md-sys-color-on-surface-variant);
+    background: var(--md-sys-color-surface-variant);
+    padding: calc(var(--space)/2) var(--space);
+    border-radius: var(--shape-small);
     white-space: nowrap;
   }
+
   .job-location {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin-top: 4px;
+    font-size: var(--type-label-large);
+    color: var(--md-sys-color-on-surface-variant);
+    margin-top: calc(var(--space)/2);
   }
 
+  /* Job description */
   .job-description {
-    margin: 20px 0;
-    line-height: 1.7;
-  }
-  .job-description p {
-    margin-bottom: 16px;
+    margin: calc(var(--space)*2) 0;
+    line-height: 1.6;
   }
 
+  .job-description p {
+    margin-bottom: var(--space);
+    color: var(--md-sys-color-on-surface-variant);
+  }
+
+  /* Achievement list */
   .achievement-list {
     list-style: none;
     padding: 0;
-    margin: 20px 0;
+    margin: calc(var(--space)*2) 0;
   }
+
   .achievement-list li {
-    padding: 12px 0;
-    padding-left: 24px;
+    padding: var(--space) 0;
+    padding-left: calc(var(--space)*3);
     position: relative;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(45, 45, 45, 0.5);
+    color: var(--md-sys-color-on-surface-variant);
+    line-height: 1.5;
   }
+
   .achievement-list li:last-child {
     border-bottom: none;
   }
+
   .achievement-list li:before {
     content: "▶";
     position: absolute;
     left: 0;
-    color: var(--primary);
-    font-size: 0.8rem;
+    color: rgba(76, 175, 80, 0.7);
+    font-size: 0.7rem;
+    top: calc(var(--space) + 2px);
   }
 
+  /* Skills section */
   .skills-section {
-    margin-top: 24px;
+    margin-top: calc(var(--space)*3);
   }
+
   .skills-label {
     font-weight: 500;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    margin-bottom: 12px;
+    color: var(--md-sys-color-on-surface);
+    font-size: var(--type-label-large);
+    margin-bottom: var(--space);
     display: block;
   }
+
   .skills-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: var(--space);
   }
+
   .skill-tag {
-    background: var(--surface-light);
-    padding: 4px 10px;
-    border-radius: 16px;
-    font-size: 0.85rem;
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
+    background: var(--md-sys-color-surface-variant);
+    padding: calc(var(--space)/2) var(--space);
+    border-radius: var(--shape-large);
+    font-size: var(--type-label-large);
+    border: 1px solid var(--md-sys-color-outline);
+    color: var(--md-sys-color-on-surface-variant);
   }
 
-  /* LEADERSHIP CALLOUT */
-  .leadership-item {
-    border-left-color: var(--accent);
-  }
-  .leadership-item .job-title {
-    color: var(--accent);
-  }
-
-  /* CTO CALLOUT */
-  .cto-item {
-    border-left-color: var(--ios-blue);
-    background: linear-gradient(135deg, var(--surface) 0%, #2a3f5f 100%);
-  }
-  .cto-item .job-title {
-    color: var(--ios-blue);
+  /* Expertise summary grid */
+  .expertise-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: calc(var(--space)*4);
+    margin-top: calc(var(--space)*4);
   }
 
-  /* CONTACT LINKS */
+  .expertise-summary-card {
+    background: var(--md-sys-color-surface);
+    border-radius: var(--shape-medium);
+    box-shadow: var(--elevation-level1);
+    padding: calc(var(--space)*3);
+  }
+
+  .expertise-summary-card h3 {
+    margin-bottom: var(--space);
+    color: var(--md-sys-color-primary);
+  }
+
+  /* Contact section */
+  .contact-section {
+    text-align: center;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: calc(var(--space)*3);
+    flex-wrap: wrap;
+    margin-top: calc(var(--space)*4);
+  }
+
   .contact-link {
-    color: var(--on-surface);
+    padding: calc(var(--space)*2) calc(var(--space)*3);
+    border-radius: var(--shape-medium);
+    background-color: var(--md-sys-color-surface);
+    box-shadow: var(--elevation-level1);
+    font-size: var(--type-label-large);
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid var(--md-sys-color-outline);
   }
+
   .contact-link:hover {
-    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--elevation-level3);
+    color: var(--md-sys-color-primary);
   }
 
-  /* RESPONSIVE */
+  .btn-primary {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+  }
+
+  /* Highlight text */
+  .highlight {
+    color: var(--md-sys-color-secondary);
+    font-weight: 500;
+  }
+
+  /* Responsive design */
+  @media (max-width: 1024px) {
+    .page-header {
+      padding: calc(var(--space)*6) var(--space);
+    }
+    .main-content {
+      padding: calc(var(--space)*4) var(--space);
+    }
+  }
+
   @media (max-width: 768px) {
-    .page-header h1 { font-size: 2rem; }
-    .summary-section, .timeline-item { padding: 20px; }
-    .job-header { flex-direction: column; align-items: flex-start; }
-    .timeline { padding-left: 30px; }
-    .timeline::before { left: 15px; }
-    .timeline-item::before { left: -41px; }
-    .summary-stats { grid-template-columns: repeat(2, 1fr); }
+    .page-header h1 {
+      font-size: 2.5rem;
+    }
+    .section {
+      padding: calc(var(--space)*3) calc(var(--space)*2);
+    }
+    .job-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .timeline {
+      padding-left: 0;
+    }
+    .timeline::before {
+      left: calc(var(--space)*1.5);
+    }
+    .timeline-item {
+      margin-left: calc(var(--space)*4);
+    }
+    .timeline-item::before {
+      left: calc(-1 * var(--space)*5);
+    }
+    .summary-stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .expertise-summary-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
-  /* PRINT STYLES */
-  @media print {
-    body { background: white; color: black; }
-    .timeline-item { break-inside: avoid; margin-bottom: 20px; }
-    .page-header { padding: 20px 0; }
+  @media (max-width: 600px) {
+    .page-header h1 {
+      font-size: 2rem;
+    }
+    .section h2 {
+      font-size: 2rem;
+    }
+    .timeline-item {
+      padding: calc(var(--space)*3);
+    }
+    .contact-links {
+      flex-direction: column;
+      align-items: center;
+    }
+    .contact-link {
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .page-header h1 {
+      font-size: 1.75rem;
+    }
+    .section h2 {
+      font-size: 1.75rem;
+    }
   }
 </style>
 
-<!-- Wrap the experience content to apply custom styling without affecting navbar -->
-<div class="experience-content">
-<!-- Wrap the experience content to apply custom styling without affecting navbar -->
+<!-- Experience page content with Material Design 3 styling -->
 <div class="experience-content">
   <section class="page-header">
     <h1>Professional Experience</h1>
@@ -284,11 +464,11 @@
 
   <div class="main-content">
     <!-- PROFESSIONAL SUMMARY -->
-    <section class="summary-section">
+    <section class="section">
       <h2>Professional Summary</h2>
       <p>
         Senior mobile development expert with 8+ years of specialized experience in Android development and comprehensive iOS capabilities.
-        Currently serving as CTO, combining technical leadership with hands-on development expertise. Proven track record of
+        Currently serving as <span class="highlight">CTO</span>, combining technical leadership with hands-on development expertise. Proven track record of
         architecting and delivering mission-critical applications for diverse industries including defense (Special Forces),
         healthcare (100K+ users), IoT ecosystems, and fitness platforms.
       </p>
@@ -320,7 +500,7 @@
     </section>
 
     <!-- PROFESSIONAL EXPERIENCE -->
-    <section class="experience-section">
+    <section class="section">
       <h2>Professional Experience</h2>
 
       <div class="timeline">
@@ -362,12 +542,7 @@
               <span class="skill-tag">Django REST Framework</span>
               <span class="skill-tag">Push Notification SDK</span>
               <span class="skill-tag">Hilt</span>
-              <span class="skill-tag">Ktor</span>
-              <span class="skill-tag">Room</span>
-              <span class="skill-tag">Core Data</span>
-              <span class="skill-tag">Apple Maps</span>
               <span class="skill-tag">Technical Leadership</span>
-              <span class="skill-tag">Product Strategy</span>
             </div>
           </div>
         </div>
@@ -407,7 +582,6 @@
               <span class="skill-tag">Kotlin Coroutines</span>
               <span class="skill-tag">Kotlin DSL</span>
               <span class="skill-tag">Java</span>
-              <span class="skill-tag">Groovy</span>
               <span class="skill-tag">Agile Methodologies</span>
             </div>
           </div>
@@ -452,9 +626,7 @@
               <span class="skill-tag">Push Notification SDK</span>
               <span class="skill-tag">Room</span>
               <span class="skill-tag">Hilt</span>
-              <span class="skill-tag">Broadcast Receivers</span>
               <span class="skill-tag">Inter-process Communication</span>
-              <span class="skill-tag">Java</span>
             </div>
           </div>
         </div>
@@ -491,7 +663,6 @@
             <div class="skills-grid">
               <span class="skill-tag">Android SDK</span>
               <span class="skill-tag">Kotlin</span>
-              <span class="skill-tag">Kotlin Coroutines</span>
               <span class="skill-tag">Swift</span>
               <span class="skill-tag">SwiftUI</span>
               <span class="skill-tag">Objective-C</span>
@@ -500,8 +671,6 @@
               <span class="skill-tag">Retrofit</span>
               <span class="skill-tag">Android NDK</span>
               <span class="skill-tag">Xcode</span>
-              <span class="skill-tag">Android Studio</span>
-              <span class="skill-tag">Gradle</span>
             </div>
           </div>
         </div>
@@ -639,54 +808,6 @@
           </div>
         </div>
 
-        <!-- ANTHEM - MOBILE APPLICATION DEVELOPER -->
-        <div class="timeline-item">
-          <div class="job-header">
-            <div>
-              <h3 class="job-title">Mobile Application Developer</h3>
-              <div class="company-name">Anthem Blue Cross and Blue Shield</div>
-              <div class="job-location">Norfolk, VA</div>
-            </div>
-            <div class="job-duration">Feb 2019 - Oct 2019 (9 mos)</div>
-          </div>
-
-          <div class="job-description">
-            <p>
-              Architected and led development of enterprise-scale healthcare mobile application serving 100,000+ members,
-              delivering critical health insurance services and member portal functionality across iOS and Android platforms
-              in a highly regulated healthcare environment.
-            </p>
-          </div>
-
-          <ul class="achievement-list">
-            <li>Solved complex technical challenges including advanced networking optimizations and sophisticated UI/UX implementations</li>
-            <li>Ensured reliable performance and accessibility for diverse user demographics accessing essential healthcare services</li>
-            <li>Mentored engineering teams and drove technical excellence by training junior developers</li>
-            <li>Established best practices and contributed to talent acquisition through candidate evaluation and hiring</li>
-            <li>Implemented robust Android architecture with Kotlin, Dagger 2, RxJava, Coroutines, and LiveData</li>
-            <li>Developed scalable iOS solutions leveraging Swift, UIKit, and Alamofire with CocoaPods architecture</li>
-          </ul>
-
-          <div class="skills-section">
-            <span class="skills-label">Key Technologies:</span>
-            <div class="skills-grid">
-              <span class="skill-tag">Android SDK</span>
-              <span class="skill-tag">Kotlin</span>
-              <span class="skill-tag">Kotlin Coroutines</span>
-              <span class="skill-tag">RxJava</span>
-              <span class="skill-tag">Room</span>
-              <span class="skill-tag">Retrofit</span>
-              <span class="skill-tag">OkHttp</span>
-              <span class="skill-tag">Moshi</span>
-              <span class="skill-tag">GSON</span>
-              <span class="skill-tag">Swift</span>
-              <span class="skill-tag">Objective-C</span>
-              <span class="skill-tag">Xcode</span>
-              <span class="skill-tag">Android Studio</span>
-            </div>
-          </div>
-        </div>
-
         <!-- TRANSCENDENT - MOBILE APPLICATION DEVELOPER -->
         <div class="timeline-item">
           <div class="job-header">
@@ -816,12 +937,12 @@
     </section>
 
     <!-- TECHNICAL EXPERTISE SUMMARY -->
-   <section class="summary-section">
+    <section class="section">
       <h2>Technical Expertise Summary</h2>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px;">
-        <div>
-          <h3 style="color: var(--android-green); margin-bottom: 16px;">Android Specialization</h3>
+      <div class="expertise-summary-grid">
+        <div class="expertise-summary-card">
+          <h3>Android Specialization</h3>
           <div class="skills-grid">
             <span class="skill-tag">Kotlin & Coroutines</span>
             <span class="skill-tag">Jetpack Compose</span>
@@ -838,8 +959,8 @@
           </div>
         </div>
 
-        <div>
-          <h3 style="color: var(--ios-blue); margin-bottom: 16px;">iOS Development</h3>
+        <div class="expertise-summary-card">
+          <h3>iOS Development</h3>
           <div class="skills-grid">
             <span class="skill-tag">Swift & Objective-C</span>
             <span class="skill-tag">SwiftUI & UIKit</span>
@@ -852,8 +973,8 @@
           </div>
         </div>
 
-        <div>
-          <h3 style="color: var(--accent); margin-bottom: 16px;">Cross-Platform & Leadership</h3>
+        <div class="expertise-summary-card">
+          <h3>Cross-Platform & Leadership</h3>
           <div class="skills-grid">
             <span class="skill-tag">Flutter & Dart</span>
             <span class="skill-tag">Technical Leadership</span>
@@ -866,8 +987,8 @@
           </div>
         </div>
 
-        <div>
-          <h3 style="color: var(--primary); margin-bottom: 16px;">Industry Experience</h3>
+        <div class="expertise-summary-card">
+          <h3>Industry Experience</h3>
           <div class="skills-grid">
             <span class="skill-tag">Defense & Military</span>
             <span class="skill-tag">Healthcare & Insurance</span>
@@ -883,24 +1004,21 @@
     </section>
 
     <!-- CONTACT SECTION -->
-     <section class="summary-section" style="text-align: center;">
+    <section class="section contact-section">
       <h2>Ready to Collaborate?</h2>
-      <p style="font-size: 1.1rem; margin-bottom: 30px;">
+      <p style="font-size: 1.1rem; margin-bottom: calc(var(--space)*4); color: var(--md-sys-color-on-surface-variant);">
         With 8+ years of proven expertise in enterprise mobile development, I'm ready to help bring your next project to life.
         Whether you need Android specialization, cross-platform solutions, or technical leadership, let's discuss how I can contribute to your success.
       </p>
 
-      <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-        <a href="{% url 'blog_site:home' %}"
-           style="background: var(--primary); padding: 12px 24px; border-radius: 6px; font-weight: 500; text-decoration: none; color: var(--on-surface);">
+      <div class="contact-links">
+        <a href="{% url 'blog_site:home' %}" class="contact-link btn-primary">
           Back to Home
         </a>
-        <a href="https://linkedin.com/in/ian-schoenrock-045268122" target="_blank"
-           style="background: var(--surface-light); padding: 12px 24px; border-radius: 6px; font-weight: 500; border: 1px solid var(--border); text-decoration: none; color: var(--on-surface);">
+        <a href="https://linkedin.com/in/ian-schoenrock-045268122" target="_blank" class="contact-link">
           LinkedIn Profile
         </a>
-        <a href="mailto:ian@example.com"
-           style="background: var(--surface-light); padding: 12px 24px; border-radius: 6px; font-weight: 500; border: 1px solid var(--border); text-decoration: none; color: var(--on-surface);">
+        <a href="mailto:ianschoenrock@gmail.com" class="contact-link">
           Email Me
         </a>
       </div>

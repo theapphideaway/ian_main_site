@@ -23,12 +23,8 @@ SECRET_KEY = 'django-insecure-$f&9r^tb*x-t+d@_!l6pe^hm@be**w#%*hb86!bead+rm58+dj
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False  # Should be False in production
-ALLOWED_HOSTS = ['www.ianschoenrock.com', 'ianschoenrock.com']
 
-
-
-
-ALLOWED_HOSTS = ['localhost', 'ianschoenrock.pythonanywhere.com', 'www.ianschoenrock.com']
+ALLOWED_HOSTS = ['localhost', 'ianschoenrock.pythonanywhere.com', 'www.ianschoenrock.com', 'ianschoenrock.com']
 
 # Application definition
 
@@ -113,8 +109,6 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-STATIC_URL = '/static/'
-
 
 USE_I18N = True
 
@@ -124,13 +118,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# If you have additional static directories
 STATICFILES_DIRS = [
-    BASE_DIR / "static",  # or os.path.join(BASE_DIR, 'static') in older Django
+    os.path.join(BASE_DIR, 'blog_site', 'static'),
+    # Add other static directories if needed
 ]
-
-# settings.py
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

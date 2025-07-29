@@ -108,6 +108,13 @@
     background-size: contain;
     background-repeat: no-repeat;
   }
+
+  .company-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* This will maintain aspect ratio and fit within the container */
+      display: block;
+    }
   /* Expertise grid */
   .expertise-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: calc(var(--space)*4); }
   .expertise-card {
